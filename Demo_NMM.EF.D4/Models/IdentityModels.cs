@@ -28,6 +28,7 @@ namespace Demo_NMM.EF.D2.Models
         }
     }
 
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -42,9 +43,7 @@ namespace Demo_NMM.EF.D2.Models
 
         public DbSet<Brewery> Breweries { get; set; }
         public DbSet<BreweryReview> BreweryReviews { get; set; }
-        public DbSet<Beer> Beers { get; set; }
-
-        //public System.Data.Entity.DbSet<Demo_NMM.EF.D2.Models.EditUserViewModel> EditUserViewModels { get; set; }
+        public DbSet<Beer> Beers { get; set; }                       
 
     }
 }

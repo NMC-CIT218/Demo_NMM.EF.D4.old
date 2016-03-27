@@ -133,8 +133,6 @@ namespace Demo_NMM.EF.D2.Models
             this.Email = user.Email;
         }
 
-        //public string Id { get; set; }
-
         [Key]
         [Required]
         [Display(Name = "User Name")]

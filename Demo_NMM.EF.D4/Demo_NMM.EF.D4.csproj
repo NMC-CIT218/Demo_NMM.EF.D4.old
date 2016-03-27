@@ -162,6 +162,7 @@
     <Compile Include="Controllers\BreweriesController.cs" />
     <Compile Include="Controllers\BreweryReviewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdentityRolesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,6 +186,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\BreweryReview.cs" />
+    <Compile Include="Models\IdentityRoleTemp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Views\Breweries\ListBreweries.cshtml" />
@@ -265,6 +267,12 @@
     <Content Include="Views\Account\Details.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\View.cshtml" />
+    <Content Include="Views\IdentityRoles\Create.cshtml" />
+    <Content Include="Views\IdentityRoles\Delete.cshtml" />
+    <Content Include="Views\IdentityRoles\Details.cshtml" />
+    <Content Include="Views\IdentityRoles\Edit.cshtml" />
+    <Content Include="Views\IdentityRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

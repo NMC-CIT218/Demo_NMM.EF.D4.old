@@ -1,19 +1,16 @@
 ﻿@model IEnumerable<Demo_NMM.EF.D2.Models.EditUserViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "View";
 }
 
-<h2>User Administration</h2>
+<h2>View</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -29,9 +26,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
@@ -41,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { userName = item.UserName }) |
-            @Html.ActionLink("Details", "Details", new { userName = item.UserName }) |
-            @Html.ActionLink("Delete", "Delete", new { userName=item.UserName })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserName }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserName })
         </td>
     </tr>
 }
