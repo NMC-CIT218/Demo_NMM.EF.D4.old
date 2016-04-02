@@ -2,8 +2,12 @@
 using System.Net;
 using System.Web.Mvc;
 using Demo_NMM.EF.D2.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Collections.Generic;
+using System;
 
 namespace Demo_NMM.EF.D2.Controllers
 {
@@ -24,12 +28,12 @@ namespace Demo_NMM.EF.D2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IdentityRole identityRoleTemp = db.Roles.Find(id);
-            if (identityRoleTemp == null)
+            IdentityRole role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(identityRoleTemp);
+            return View(role);
         }
 
         // GET: IdentityRoles/Create
@@ -39,8 +43,6 @@ namespace Demo_NMM.EF.D2.Controllers
         }
 
         // POST: IdentityRoles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name")] IdentityRole role)
@@ -71,11 +73,9 @@ namespace Demo_NMM.EF.D2.Controllers
         }
 
         // POST: IdentityRoles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] IdentityRole role)
+        public ActionResult Edit([Bind(Include = "ID, Name")] IdentityRole role)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +111,45 @@ namespace Demo_NMM.EF.D2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult ViewUserRoles(string userName = null)
+        {
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                List<string> userRoles;
+                //List<string> roles;
+                //List<string> users;
+                using (var context = new ApplicationDbContext())
+                {
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    //roles = (from r in roleManager.Roles select r.Name).ToList();
+
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+
+                    //users = (from u in userManager.Users select u.UserName).ToList();
+
+                    var user = userManager.FindByName(userName);
+                    if (user == null)
+                        throw new Exception("User not found!");
+
+                    var userRoleIds = (from r in user.Roles select r.RoleId);
+                    userRoles = (from id in userRoleIds
+                                 let r = roleManager.FindById(id)
+                                 select r.Name).ToList();
+                }
+
+                //ViewBag.Roles = new SelectList(roles);
+                //ViewBag.Users = new SelectList(users);
+                ViewBag.UserName = userName;
+                ViewBag.RolesForThisUser = userRoles;
+            }
+            return View();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

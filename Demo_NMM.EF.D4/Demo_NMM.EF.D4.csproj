@@ -186,7 +186,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\BreweryReview.cs" />
-    <Compile Include="Models\IdentityRoleTemp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Views\Breweries\ListBreweries.cshtml" />
@@ -273,6 +272,10 @@
     <Content Include="Views\IdentityRoles\Details.cshtml" />
     <Content Include="Views\IdentityRoles\Edit.cshtml" />
     <Content Include="Views\IdentityRoles\Index.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\IdentityRoles\ViewUserRoles.cshtml" />
+    <Content Include="Views\Account\ViewUsersRoles.cshtml" />
+    <Content Include="Views\Account\AddRoleToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
